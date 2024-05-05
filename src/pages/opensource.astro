@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const openSourceProjects = [
+  { 
+    name: "Fast Statistics",
+    url: "https://github.com/Martin-Nyaga/fast_statistics",
+    description: "A high performance native ruby extension (written in C++) for computation of descriptive statistics."
+  },
+  {
+    name: "Termplot",
+    url: "https://github.com/Martin-Nyaga/termplot",
+    description: "A simple terminal plotting tool for visualising streaming data."
+  },
+  {
+    name: "Redlock-rb",
+    url: "https://github.com/leandromoreira/redlock-rb",
+    description: "Ruby implementation of Redlock, the redis-based distributed locking algorithm"
+  }
+]
+---
+<Layout>
+  <h2 class="text-4xl mt-12 mb-6 font-bold">Open Source</h2>
+  <p class="mb-6">
+    Some of my more substantial open source projects/contributions:
+  </p>
+  <ul class="list-disc list-outside ml-6">
+    {openSourceProjects.map(project => (
+      <li class="mb-2">
+        <a class="text-blue-700 dark:text-blue-300 underline" href=`${project.url}` target="blank">{project.name}</a>: {project.description}
+      </li>
+    ))}
+  </ul>
+</Layout>
+
