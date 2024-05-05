@@ -1,35 +1,53 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Link from '../components/Link.astro'
 
 const openSourceProjects = [
   { 
+    icon: "🚀",
     name: "Fast Statistics",
+    type: "Owner",
     url: "https://github.com/Martin-Nyaga/fast_statistics",
     description: "A high performance native ruby extension (written in C++) for computation of descriptive statistics."
   },
   {
+    icon: "📈",
     name: "Termplot",
+    type: "Owner",
     url: "https://github.com/Martin-Nyaga/termplot",
-    description: "A simple terminal plotting tool for visualising streaming data."
+    description: "A terminal plotting tool for visualising streaming data."
   },
   {
+    icon: "💎",
     name: "Redlock-rb",
+    type: "Contributor",
     url: "https://github.com/leandromoreira/redlock-rb",
     description: "Ruby implementation of Redlock, the redis-based distributed locking algorithm"
   }
 ]
 ---
 <Layout>
-  <h2 class="text-4xl mt-12 mb-6 font-bold">Open Source</h2>
-  <p class="mb-6">
-    Some of my more substantial open source projects/contributions:
-  </p>
-  <ul class="list-disc list-outside ml-6">
-    {openSourceProjects.map(project => (
-      <li class="mb-2">
-        <a class="text-blue-700 dark:text-blue-300 underline" href=`${project.url}` target="blank">{project.name}</a>: {project.description}
-      </li>
-    ))}
-  </ul>
+  <h2 class="text-4xl mt-12 mb-12 font-bold">Open Source Projects</h2>
+  {openSourceProjects.map(project => (
+    <div class="flex items-center mb-12">
+      <div class="text-6xl mr-6">
+        {project.icon}
+      </div>
+      <div>
+        <div class="mb-6">
+          <Link href=`${project.url}` target="_blank" class="mr-1">{project.name}</Link>
+          {project.type == "Owner" && (
+            <span class="rounded-full text-sm bg-neutral-300 dark:bg-zinc-700 px-2 py-1
+              dark:text-slate-200 text-zinc-900">Owner</span>
+          )}
+          {project.type == "Contributor" && (
+            <span class="rounded-full text-sm bg-neutral-300 dark:bg-zinc-700 px-2 py-1
+              dark:text-slate-200 text-zinc-900">Contributor</span>
+          )}
+        </div>
+        <p>{project.description}</p>
+      </div>
+    </div>
+  ))}
 </Layout>
 

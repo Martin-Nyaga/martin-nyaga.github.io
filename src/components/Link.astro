@@ -1,0 +1,11 @@
+---
+let { class: className, href, target } = Astro.props
+className ||= ""
+target ||= "_self"
+---
+<a href=`${href}`
+  class=`underline decoration-dashed
+  underline-offset-8 decoration-2 hover:text-red-500
+  dark:hover:text-red-400 ${className}`
+  target=`${target}`><slot /></a>
+

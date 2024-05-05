@@ -1,11 +1,18 @@
 ---
-import ThemeIcon from '../components/ThemeIcon.astro';
+import ThemeIcon from './ThemeIcon.astro';
+import Link from "./Link.astro"
 ---
 <div class="flex justify-between items-center">
   <div>
-    <a href="/" class="mr-6 hover:underline">About</a>
-    <a href="/opensource" class="mr-6 hover:underline">Open source</a>
+    <Link href="/">Martin Nyaga</Link>
   </div>
-  <ThemeIcon />
+    
+  <div class="flex flex-col sm:flex-row items-center">
+    <div class="mr-4 flex flex-col sm:block mb-2">
+      <Link href="/" class="mr-4 mb-4">About</Link>
+      <Link href="/opensource" class="mr-4 mb-4">Open source</Link>
+    </div>
+    <ThemeIcon />
+  <div>
 </div>
 
