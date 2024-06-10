@@ -8,7 +8,7 @@ export default {
 	theme: {
 		extend: {
       fontFamily: {
-        'sans': ['Jetbrains Mono', 'Monospace']
+        'sans': ['Recursive', 'Monospace']
       }
     },
 	},
