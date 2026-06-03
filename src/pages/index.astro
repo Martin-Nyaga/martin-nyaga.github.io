@@ -14,16 +14,11 @@ import { Icon } from 'astro-icon/components';
     </div>
     <h1 class="title">Hi, I’m Martin</h1>
     <div class="prose">
-      <p class="intro-meta">
-        <span>Lead Software Engineer</span>
-        <span class="sep">·</span>
-        <span>Leeds, UK</span>
-      </p>
       <p>
-        I’m a hands-on technical lead with 12 years of experience building
+        I’m a hands-on technical lead based in Leeds, UK, with 12 years building
         complex software systems. The hard parts are usually below the surface:
         legacy code, performance constraints, industrial data, AI workflows, and
-        the architecture needed to make everything hold together.
+        the architecture to make it all hold together.
       </p>
       <p>
         I work somewhere between the code, the system design, and the team:
@@ -31,26 +26,15 @@ import { Icon } from 'astro-icon/components';
         software that ships.
       </p>
 
-      <div class="profile-links" aria-label="Profile links">
-        <a class="profile-card" href="https://github.com/Martin-Nyaga" target="_blank" rel="noopener">
-          <span class="profile-label">
-            <Icon name="mdi:github" size="16" />
-            <span>GitHub</span>
-          </span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="m9 18 6-6-6-6" />
-          </svg>
+      <div class="profile-links icon-links" aria-label="Profile links">
+        <a class="icon-link" href="https://github.com/Martin-Nyaga" target="_blank" rel="noopener">
+          <Icon name="mdi:github" size="18" />
+          <span>GitHub</span>
         </a>
-        <a class="profile-card" href="https://www.linkedin.com/in/martin-nyaga/" target="_blank" rel="noopener">
-          <span class="profile-label">
-            <Icon name="mdi:linkedin" size="16" />
-            <span>LinkedIn</span>
-          </span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="m9 18 6-6-6-6" />
-          </svg>
+        <span class="sep">·</span>
+        <a class="icon-link" href="https://www.linkedin.com/in/martin-nyaga/" target="_blank" rel="noopener">
+          <Icon name="mdi:linkedin" size="18" />
+          <span>LinkedIn</span>
         </a>
       </div>
 
@@ -133,76 +117,12 @@ import { Icon } from 'astro-icon/components';
 </Layout>
 
 <style>
-  .intro-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.45rem;
-    margin: -1.15rem 0 2rem;
-    font-family: "Fragment Mono", monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
-    line-height: 1.5;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-  .intro-meta .sep {
-    color: var(--muted);
-    opacity: 0.55;
-  }
-
   .intro-section {
     margin-top: 4rem;
   }
 
   .profile-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 2rem;
-  }
-
-  .profile-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.6rem;
-    padding: 0.75rem 0.85rem;
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    color: var(--text);
-    font-family: "Fragment Mono", monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
-    line-height: 1.4;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: border-color .2s ease, transform .2s ease;
-  }
-
-  .profile-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-
-  .profile-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-  }
-
-  .profile-label :global(svg) {
-    width: 1rem;
-    height: 1rem;
-    color: var(--accent);
-  }
-
-  .profile-card svg {
-    flex: 0 0 auto;
-    width: 1rem;
-    height: 1rem;
-    color: var(--accent);
+    margin-top: 1.75rem;
   }
 
   .intro-section h2 {
@@ -238,7 +158,6 @@ import { Icon } from 'astro-icon/components';
   }
 
   @media (max-width: 520px) {
-    .intro-meta { margin-top: -1.35rem; }
     .chevron-list li { gap: 0.4rem; }
   }
 </style>

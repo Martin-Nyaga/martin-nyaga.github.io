@@ -31,7 +31,7 @@ import Footer from '../components/Footer.astro';
         --bg: #ede8dd;
         --text: #16130d;
         --muted: #67604f;
-        --accent: oklch(64% 0.190 78);
+        --accent: #d97706;
         --rule: color-mix(in srgb, var(--text) 14%, transparent);
         --grain-blend: multiply;
         --grain-op: 0.28;
@@ -120,19 +120,27 @@ import Footer from '../components/Footer.astro';
       }
       a.link:hover { background: color-mix(in srgb, var(--accent) 16%, transparent); }
 
-      /* ---- footer ---- */
-      .site-footer {
-        margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);
-        font-family: "Fragment Mono", monospace; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.02em;
+      /* ---- shared icon-link row (intro + footer GitHub/LinkedIn) ---- */
+      .icon-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+      .icon-links .sep { color: var(--muted); opacity: 0.5; }
+      .icon-link {
+        display: inline-flex; align-items: center; gap: 0.45rem;
+        color: var(--text);
+        font-family: "Fragment Mono", monospace; font-size: 0.82rem; letter-spacing: 0.02em;
+        text-decoration: none; transition: background .15s;
       }
-      .site-footer a { color: var(--text); text-decoration: none; transition: background .15s; }
-      .site-footer a:hover {
+      .icon-link svg { flex: 0 0 auto; color: var(--accent); }
+      .icon-link:hover {
         background: color-mix(in srgb, var(--accent) 16%, transparent);
         text-decoration: underline;
         text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
         text-underline-offset: 3px; text-decoration-thickness: 1.5px;
       }
-      .site-footer .sep { opacity: 0.4; margin: 0 0.6rem; }
+
+      /* ---- footer ---- */
+      .site-footer {
+        margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);
+      }
 
       @media (max-width: 520px) {
         .hero { margin-top: 4.5rem; }
