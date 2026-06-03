@@ -1,27 +1,19 @@
 ---
 import ThemeIcon from './ThemeIcon.astro';
-import Link from "./Link.astro"
 import { Icon } from 'astro-icon/components';
 ---
 <style>
-  [x-cloak] { visibility: hidden !important; }
+  [x-cloak] { display: none !important; }
 </style>
-<div class="flex justify-between relative" x-data="{ mobileMenuExpanded: false }">
-  <div>
-    <Link href="/">Martin Nyaga</Link>
-  </div>
+<nav class="site-nav" x-data="{ open: false }">
+  <a class="brand" href="/">Martin Nyaga</a>
 
-  <div class="cursor-pointer sm:hidden" @click="mobileMenuExpanded = !mobileMenuExpanded">
-    <Icon name="material-symbols:menu-rounded" size="30" />
-  </div>
+  <button class="nav-toggle" @click="open = !open" aria-label="Toggle menu">
+    <Icon name="material-symbols:menu-rounded" size="24" />
+  </button>
 
-  <div x-cloak :class="mobileMenuExpanded ? 'flex' : 'hidden'" class="absolute
-    sm:relative sm:flex flex-col sm:flex-row sm:items-center
-    top-10 right-1 sm:top-0 border sm:border-0 p-4 sm:p-0 bg-neutral-100 dark:bg-zinc-900">
-    <Link href="/" class="sm:mr-6 mb-4">About</Link>
-    <Link href="/opensource" class="sm:mr-6 mb-4">Open source</Link>
-    <div @click="mobileMenuExpanded = !mobileMenuExpanded">
-      <ThemeIcon />
-    </div>
+  <div class="nav-links" :data-open="open ? 'true' : 'false'">
+    <a href="/#open-source" @click="open = false">Open source</a>
+    <ThemeIcon />
   </div>
-</div>
+</nav>

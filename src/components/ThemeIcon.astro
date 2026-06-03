@@ -1,54 +1,25 @@
 ---
 import { Icon } from 'astro-icon/components';
 ---
-<div x-data="theme" class="cursor-pointer inline-block mb-2 mt-2 sm:mt-0">
-  <div @click="toggle" x-show="!dark" class="hover:rotate-45 hover:text-red-500 dark:hover:text-red-400">
-    <Icon name="material-symbols:dark-mode" size="20"/>
-  </div>
-
-  <div @click="toggle" x-show="dark" class="hover:rotate-45 hover:text-red-500 dark:hover:text-red-400">
-    <Icon name="material-symbols:sunny" size="20"/>
-  </div>
+<div x-data="theme" x-cloak class="theme-toggle" @click="toggle">
+  <div x-show="!dark"><Icon name="material-symbols:dark-mode" size="18"/></div>
+  <div x-show="dark"><Icon name="material-symbols:sunny" size="18"/></div>
 </div>
 
+<style>
+  .theme-toggle { cursor: pointer; display: inline-flex; color: var(--muted); transition: color .15s, transform .2s; }
+  .theme-toggle:hover { color: var(--accent); transform: rotate(35deg); }
+</style>
 
-<script is:inline-block>
-  const loadTheme = () => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
-    }
-
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-
-    return 'light';
-  }
-  const theme = loadTheme();
-  if (theme === 'light') {
-    document.documentElement.classList.remove('dark');
-  } else {
-    this.dark = true;
-    document.documentElement.classList.add('dark');
-  }
-
-  window.localStorage.setItem('theme', theme);
-
+<script is:inline>
   document.addEventListener('alpine:init', () => {
     Alpine.data('theme', () => ({
-      dark: false,
-      init() {
-        this.dark = theme === 'dark';
-      },
+      dark: document.documentElement.classList.contains('dark'),
       toggle() {
-        this.dark = !this.dark
+        this.dark = !this.dark;
         localStorage.setItem('theme', this.dark ? 'dark' : 'light');
-        if (this.dark) {
-          document.documentElement.classList.add('dark')
-        } else {
-          document.documentElement.classList.remove('dark')
-        }
+        document.documentElement.classList.toggle('dark', this.dark);
       }
-    }))
-  })
+    }));
+  });
 </script>

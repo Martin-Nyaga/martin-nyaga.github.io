@@ -8,7 +8,7 @@ export default {
 	theme: {
 		extend: {
       fontFamily: {
-        'sans': ['Recursive', 'Monospace']
+        'sans': ['IBM Plex Sans', 'system-ui', 'sans-serif']
       }
     },
 	},

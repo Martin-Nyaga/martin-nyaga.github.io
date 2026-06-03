@@ -1,31 +1,42 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import InlineLink from '../components/InlineLink.astro';
+import OpenSource from '../components/OpenSource.astro';
 ---
 <Layout>
-  <h1 class="text-3xl sm:text-5xl mt-28 sm:mt-30 mb-12 font-bold">👋 Hi, I'm Martin</h1>
-  <p class="mb-6">
-    I'm a software engineer with over a decade of
-    experience building applications for the web.
-  </p>
-  <p class="mb-6">
-    I wrote my first line of code in 2010. I've since taken dozens of
-    web apps from conception to production, becoming fluent in a broad range
-    of web technologies along the way.
-  </p>
-  <p class="mb-6">
-    I've shipped a lot of Ruby, Rails, Javascript, Typescript, and C++. More
-    recently, I've been building with WebAssembly, focusing on how it expands
-    the browser's capabilities. I've been especially interested in 
-    <InlineLink target="_blank" href="https://drs.software/blog/understanding-webassembly---the-fundamentals/">
-    porting applications to the browser using WebAssembly.</InlineLink>
-    I’m constantly tinkering with new (to me) tech.
-  </p>
-  <p class="mb-6">
-    I’m currently the Lead Software Engineer at 
-    <InlineLink target="_blank" href="https://drs.software/">DRS Software,</InlineLink>
-    where we build advanced web applications and support organisations in
-    modernising their existing software using Wasm. 
-  </p>
+  <main class="hero">
+    <div class="marker">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 19h8"/><path d="m4 17 6-6-6-6"/>
+      </svg>
+    </div>
+    <h1 class="title">Hi, I'm Martin</h1>
+    <div class="prose">
+      <p>
+        I'm a software engineer with over a decade of
+        experience building applications for the web.
+      </p>
+      <p>
+        I wrote my first line of code in 2010. I've since taken dozens of
+        web apps from conception to production, becoming fluent in a broad range
+        of web technologies along the way.
+      </p>
+      <p>
+        I've shipped a lot of Ruby, Rails, Javascript, Typescript, and C++. More
+        recently, I've been building with WebAssembly, focusing on how it expands
+        the browser's capabilities. I've been especially interested in
+        <a class="link" target="_blank" href="https://drs.software/blog/understanding-webassembly---the-fundamentals/">
+        porting applications to the browser using WebAssembly.</a>
+        I’m constantly tinkering with new (to me) tech.
+      </p>
+      <p>
+        I’m currently the Lead Software Engineer at
+        <a class="link" target="_blank" href="https://drs.software/">DRS Software,</a>
+        where we build advanced web applications and support organisations in
+        modernising their existing software using Wasm.
+      </p>
+    </div>
 
+    <OpenSource />
+  </main>
 </Layout>

@@ -11,15 +11,139 @@ import Footer from '../components/Footer.astro';
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Recursive&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Fragment+Mono&display=swap" rel="stylesheet">
     <title>Martin Nyaga</title>
+
+    <script is:inline>
+      // Set theme before paint to avoid a flash of the wrong palette.
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          if (t === 'dark') document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <style is:global>
+      :root {
+        --bg: #ede8dd;
+        --text: #16130d;
+        --muted: #67604f;
+        --accent: oklch(64% 0.190 78);
+        --rule: color-mix(in srgb, var(--text) 14%, transparent);
+        --grain-blend: multiply;
+        --grain-op: 0.28;
+      }
+      html.dark {
+        --bg: #15140f;
+        --text: #e7dfd1;
+        --muted: #8f887a;
+        --accent: #e0b446;
+        --grain-blend: soft-light;
+        --grain-op: 0.35;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+      body {
+        position: relative;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "IBM Plex Sans", system-ui, sans-serif;
+        font-size: 18.5px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+      /* Paper grain — blends with the background only; content sits above it. */
+      body::before {
+        content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+        opacity: var(--grain-op); mix-blend-mode: var(--grain-blend);
+        background-size: 320px 320px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+      ::selection { background: color-mix(in srgb, var(--accent) 30%, transparent); }
+
+      .page {
+        position: relative; z-index: 1;
+        max-width: 34rem; margin: 0 auto;
+        padding: 2.5rem 1.5rem 3rem;
+        min-height: 100vh; display: flex; flex-direction: column;
+      }
+
+      /* ---- nav ---- */
+      .site-nav {
+        position: relative; display: flex; justify-content: space-between; align-items: center;
+        font-family: "Fragment Mono", monospace; font-size: 0.84rem; letter-spacing: 0.02em;
+      }
+      .site-nav .brand { color: var(--text); text-decoration: none; }
+      .site-nav .brand:hover { color: var(--accent); }
+      .nav-toggle { display: none; cursor: pointer; color: var(--text); background: none; border: 0; padding: 0; line-height: 0; }
+      .nav-links { display: flex; align-items: center; gap: 1.4rem; }
+      .nav-links a { color: var(--muted); text-decoration: none; }
+      .nav-links a:hover { color: var(--accent); }
+      @media (max-width: 520px) {
+        .nav-toggle { display: block; }
+        .nav-links {
+          position: absolute; top: 2.3rem; right: 0; z-index: 2;
+          flex-direction: column; align-items: flex-end; gap: 1rem;
+          background: var(--bg); border: 1px solid var(--rule); padding: 1rem 1.25rem;
+        }
+        .nav-links { display: none; }
+        .nav-links[data-open="true"] { display: flex; }
+      }
+
+      /* ---- content ---- */
+      .hero { flex: 1; margin-top: 6.5rem; }
+      .content { flex: 1; margin-top: 3.5rem; }
+      .marker { color: var(--accent); display: flex; margin-bottom: 1.25rem; }
+      .marker svg { display: block; }
+      h1.title {
+        font-family: "Crimson Pro", Georgia, serif; font-weight: 500;
+        font-size: 3rem; line-height: 1.08; letter-spacing: -0.01em; margin: 0 0 2rem; color: var(--text);
+      }
+      h2.title {
+        font-family: "Crimson Pro", Georgia, serif; font-weight: 500;
+        font-size: 2.2rem; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 2.25rem; color: var(--text);
+      }
+      .prose p { margin: 0 0 1.4rem; }
+      .prose p:last-child { margin-bottom: 0; }
+
+      a.link {
+        color: var(--text); text-decoration: underline;
+        text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+        text-underline-offset: 3px; text-decoration-thickness: 1.5px; transition: background .15s;
+      }
+      a.link:hover { background: color-mix(in srgb, var(--accent) 16%, transparent); }
+
+      /* ---- footer ---- */
+      .site-footer {
+        margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);
+        font-family: "Fragment Mono", monospace; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.02em;
+      }
+      .site-footer a { color: var(--text); text-decoration: none; transition: background .15s; }
+      .site-footer a:hover {
+        background: color-mix(in srgb, var(--accent) 16%, transparent);
+        text-decoration: underline;
+        text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+        text-underline-offset: 3px; text-decoration-thickness: 1.5px;
+      }
+      .site-footer .sep { opacity: 0.4; margin: 0 0.6rem; }
+
+      @media (max-width: 520px) {
+        .hero { margin-top: 4.5rem; }
+        h1.title { font-size: 2.5rem; }
+      }
+    </style>
   </head>
-  <body class="bg-neutral-100 dark:bg-zinc-900 text-zinc-700 dark:text-slate-200 leading-relaxed">
-    <div class="pt-10 container max-w-prose px-5 mx-auto text-lg min-h-screen flex flex-col">
+  <body>
+    <div class="page">
       <Navbar />
-      <div class="flex-grow">
-        <slot />
-      </div>
+      <slot />
       <Footer />
     </div>
   </body>
