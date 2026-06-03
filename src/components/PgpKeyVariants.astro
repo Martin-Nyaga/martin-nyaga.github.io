@@ -1,0 +1,196 @@
+---
+const fingerprint = "6175 181C 06EF D4FD 080A 6E60 BC9A A515 22BA 0D8D";
+const keyHref = "/martin-nyaga-public-key.asc";
+const curlCommand = "curl -sS https://martinnyaga.com/martin-nyaga-public-key.asc | gpg --import";
+const fileLockIcon = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 9.8V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2h-3"/>
+    <path d="M14 2v5a1 1 0 0 0 1 1h5"/>
+    <path d="M9 17v-2a2 2 0 0 0-4 0v2"/>
+    <rect width="8" height="5" x="3" y="17" rx="1"/>
+  </svg>
+`;
+---
+<section class="pgp-variants" aria-labelledby="pgp-title">
+  <div class="section-head">
+    <h2 id="pgp-title" class="title">GPG Public key</h2>
+  </div>
+
+  <div class="variants">
+    <article class="pgp-card trust-card">
+      <p>
+        I sign my git commits and selected artifacts where provenance matters.
+        Use this key to verify signed work that claims to come from me.
+      </p>
+      <p class="fingerprint">
+        <span class="mark" set:html={fileLockIcon} />
+        <span class="fingerprint-label">Fingerprint</span>
+        <code>{fingerprint}</code>
+      </p>
+      <div class="actions">
+        <a class="card-action" href={keyHref} download>Download public key</a>
+        <span class="sep">·</span>
+        <button class="card-action" type="button" data-copy-fingerprint>Copy fingerprint</button>
+        <span class="sep">·</span>
+        <button class="card-action" type="button" data-copy-curl>Copy curl</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<script define:vars={{ fingerprint, curlCommand }}>
+  const pgpSection = document.querySelector(".pgp-variants");
+
+  async function copyText(text) {
+    await navigator.clipboard.writeText(text);
+  }
+
+  pgpSection?.addEventListener("click", async (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+
+    const button = target.closest("button");
+    if (!button) return;
+
+    try {
+      if (button.hasAttribute("data-copy-fingerprint")) await copyText(fingerprint);
+      if (button.hasAttribute("data-copy-curl")) await copyText(curlCommand);
+
+      const originalText = button.textContent;
+      button.textContent = "Copied";
+      window.setTimeout(() => {
+        button.textContent = originalText;
+      }, 1200);
+    } catch {
+      button.textContent = "Copy failed";
+    }
+  });
+</script>
+
+<style>
+  .pgp-variants {
+    margin-top: 4rem;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .section-head .title {
+    margin: 0 0 0.85rem;
+    font-family: "Crimson Pro", Georgia, serif;
+    font-size: 1.65rem;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--text);
+  }
+
+  .variants {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .pgp-card {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    color: var(--text);
+  }
+
+  .pgp-card {
+    padding: 1.1rem 1.25rem;
+  }
+
+  .mark,
+  .row-icon {
+    flex: 0 0 auto;
+    color: var(--accent);
+    line-height: 0;
+  }
+
+  .mark :global(svg),
+  .row-icon :global(svg) {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .fingerprint {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 0.25rem 0.6rem;
+    align-items: center;
+    margin-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .fingerprint .mark {
+    grid-row: 1 / span 2;
+  }
+
+  .fingerprint-label {
+    font-family: "Fragment Mono", monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .fingerprint code {
+    grid-column: 2;
+    font-family: "Fragment Mono", monospace;
+    font-size: 0.72rem;
+    line-height: 1.65;
+    color: var(--text);
+    overflow-wrap: anywhere;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.45rem;
+    margin-top: 0.9rem;
+  }
+
+  .card-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: "Fragment Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .card-action:hover {
+    opacity: 0.7;
+  }
+
+  .sep {
+    color: var(--muted);
+    opacity: 0.55;
+  }
+
+</style>
