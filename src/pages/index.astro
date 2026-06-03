@@ -10,33 +10,160 @@ import OpenSource from '../components/OpenSource.astro';
         <path d="M12 19h8"/><path d="m4 17 6-6-6-6"/>
       </svg>
     </div>
-    <h1 class="title">Hi, I'm Martin</h1>
+    <h1 class="title">Hi, I’m Martin</h1>
     <div class="prose">
-      <p>
-        I'm a software engineer with over a decade of
-        experience building applications for the web.
+      <p class="intro-meta">
+        <span>Lead Software Engineer</span>
+        <span class="sep">·</span>
+        <span>Leeds, UK</span>
       </p>
       <p>
-        I wrote my first line of code in 2010. I've since taken dozens of
-        web apps from conception to production, becoming fluent in a broad range
-        of web technologies along the way.
+        I’m a hands-on technical lead with 12 years of experience building
+        complex software systems. The hard parts are usually below the surface:
+        legacy code, performance constraints, industrial data, AI workflows, and
+        the architecture needed to make everything hold together.
       </p>
       <p>
-        I've shipped a lot of Ruby, Rails, Javascript, Typescript, and C++. More
-        recently, I've been building with WebAssembly, focusing on how it expands
-        the browser's capabilities. I've been especially interested in
-        <a class="link" target="_blank" href="https://drs.software/blog/understanding-webassembly---the-fundamentals/">
-        porting applications to the browser using WebAssembly.</a>
-        I’m constantly tinkering with new (to me) tech.
+        I work somewhere between the code, the system design, and the team:
+        turning ambiguity into technical direction, and technical direction into
+        software that ships.
       </p>
-      <p>
-        I’m currently the Lead Software Engineer at
-        <a class="link" target="_blank" href="https://drs.software/">DRS Software,</a>
-        where we build advanced web applications and support organisations in
-        modernising their existing software using Wasm.
-      </p>
+
+      <section class="intro-section">
+        <h2>Now</h2>
+        <ul class="chevron-list">
+          <li>
+            <svg class="bullet-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+            <span>
+              Lead Software Developer at
+              <a class="link" target="_blank" rel="noopener" href="https://drs.software/">DRS Software</a>.
+            </span>
+          </li>
+          <li>
+            <svg class="bullet-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+            <span>
+              Co-founder of
+              <a class="link" target="_blank" rel="noopener" href="https://mentorbyperforma.com/">Performa</a>,
+              building mobile, backend, and AI systems for personalised fitness.
+            </span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="intro-section selected-work">
+        <h2>Selected work</h2>
+        <ul class="chevron-list">
+          <li>
+            <svg class="bullet-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+            <span>
+              Led the
+              <a class="link" target="_blank" rel="noopener" href="https://drs.software/work/enterprise-it-modernisation/">
+                modernisation of a large-scale legacy C++ application</a>
+              into a WebAssembly + TypeScript web platform, from scoping to
+              worldwide production rollout in under 12 months.
+            </span>
+          </li>
+          <li>
+            <svg class="bullet-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+            <span>
+              Led development on industrial analytics and AI systems for process
+              engineering, including work supported by an
+              <a class="link" target="_blank" rel="noopener" href="https://drs.software/blog/iuk-smart-grant/">
+                Innovate UK SMART Grant</a>.
+            </span>
+          </li>
+          <li>
+            <svg class="bullet-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+            <span>
+              <a class="link" target="_blank" rel="noopener" href="https://drs.software/blog/drs-shortlisted-for-two-leeds-digital-festival-awards-2025/">
+                2× Leader of the Year finalist</a>
+              at Leeds Digital Festival, and named
+              <a class="link" target="_blank" rel="noopener" href="https://www.linkedin.com/feed/update/urn:li:activity:7308463613650878465/">
+                Leeds &amp; West Yorkshire Top 30 Under 30</a>
+              in 2025.
+            </span>
+          </li>
+        </ul>
+      </section>
     </div>
 
     <OpenSource />
   </main>
 </Layout>
+
+<style>
+  .intro-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.45rem;
+    margin: -1.15rem 0 2rem;
+    font-family: "Fragment Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .intro-meta .sep {
+    color: var(--muted);
+    opacity: 0.55;
+  }
+
+  .intro-section {
+    margin-top: 4rem;
+  }
+
+  .intro-section h2 {
+    margin: 0 0 0.85rem;
+    font-family: "Crimson Pro", Georgia, serif;
+    font-size: 1.65rem;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--text);
+  }
+
+  .chevron-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.05rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .chevron-list li {
+    display: grid;
+    grid-template-columns: 1rem 1fr;
+    gap: 0.5rem;
+    align-items: start;
+  }
+
+  .chevron-list .bullet-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.35rem;
+    color: var(--accent);
+  }
+
+  @media (max-width: 520px) {
+    .intro-meta { margin-top: -1.35rem; }
+    .chevron-list li { gap: 0.4rem; }
+  }
+</style>
